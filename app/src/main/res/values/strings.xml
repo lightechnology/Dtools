@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TDM工具箱</string>
+    <array name="tools_array">
+        <item>蓝牙连接管理</item>
+        <item>设备条码管理</item>
+        <item>设备位置管理</item>
+    </array>
+    <string name="title_activity_mg_device_sin">设备条码管理</string>
+    <string name="developing">开发中...</string>
+    <string name="unkonw"></string>
+</resources>
