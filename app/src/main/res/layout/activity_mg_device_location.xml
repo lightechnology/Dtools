@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.adol.tdm.dtools.MainActivity">
+    tools:context="org.adol.tdm.dtools.activity.MgDeviceLocationActivity">
 
     <ListView
-        android:id="@+id/tools_lst"
+        android:id="@+id/building_lst"
         android:layout_width="0dp"
         android:layout_height="0dp"
         tools:layout_constraintTop_creator="1"

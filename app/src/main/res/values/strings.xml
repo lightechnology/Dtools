@@ -5,7 +5,19 @@
         <item>设备条码管理</item>
         <item>设备位置管理</item>
     </array>
+    <array name="building_array">
+        <item>中心医院门诊楼</item>
+        <item>技术学校A宿舍楼</item>
+        <item>技术学校B宿舍楼</item>
+        <item>技术学校C宿舍楼</item>
+    </array>
     <string name="title_activity_mg_device_sin">设备条码管理</string>
+    <string name="title_activity_mg_ble_connect">蓝牙连接管理</string>
+    <string name="title_activity_mg_device_location">设备位置管理</string>
     <string name="developing">开发中...</string>
     <string name="unkonw"></string>
+    <string name="unknown_device">未知设备</string>
+    <string name="ble_not_supported">本设备不支持BLE模式蓝牙</string>
+    <string name="error_bluetooth_not_supported">本设备无蓝牙功能</string>
+    <string name="ok">确认</string>
 </resources>

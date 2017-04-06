@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/blecm/blecm.iml" filepath="$PROJECT_DIR$/blecm/blecm.iml" />
       <module fileurl="file://$PROJECT_DIR$/qrcode/qrcode.iml" filepath="$PROJECT_DIR$/qrcode/qrcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/svgmap/svgmap.iml" filepath="$PROJECT_DIR$/svgmap/svgmap.iml" />
     </modules>
   </component>
 </project>

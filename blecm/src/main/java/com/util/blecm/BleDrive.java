@@ -1,5 +1,6 @@
 package com.util.blecm;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -23,9 +24,9 @@ import com.util.blecm.intf.MgBluetoothGatt;
 
 public class BleDrive implements MgBluetoothGatt {
 
-    private static final int REQUEST_ENABLE_BT = 1;
     // 10秒后停止查找搜索.
-    private static final long SCAN_PERIOD = 10000L;
+    public static final long SCAN_PERIOD = 10000L;
+    private static final int REQUEST_ENABLE_BT = 1;
 
     private BluetoothAdapter bluetoothAdapter;
     private boolean mScanning;
@@ -35,10 +36,10 @@ public class BleDrive implements MgBluetoothGatt {
     private BluetoothGatt bluetoothGatt;
     private BleScanBroadcastReceiver bleScanBroadcastReceiver;
 
-    private AppCompatActivity context;
+    private Context context;
     private FoundBleDevice foundBleDevice;
 
-    public BleDrive(AppCompatActivity context, FoundBleDevice foundBleDevice) {
+    public BleDrive(Context context, FoundBleDevice foundBleDevice) {
         this.mHandler = new Handler();
         this.context = context;
         this.foundBleDevice = foundBleDevice;
@@ -49,9 +50,9 @@ public class BleDrive implements MgBluetoothGatt {
      *
      * @return
      */
-    public boolean checkIsSupportBle() {
+    public static boolean checkIsSupportBle(Context context, boolean show) {
         boolean result = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
-        if (!result)
+        if (!result && show)
             Toast.makeText(context, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
         return result;
     }
@@ -61,15 +62,23 @@ public class BleDrive implements MgBluetoothGatt {
      *
      * @return
      */
-    public boolean initBleAdapter() {
+    public static BluetoothAdapter initBleAdapter(Context context, boolean show) {
         final BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-        bluetoothAdapter = bluetoothManager.getAdapter();
+        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
         // 检查设备上是否支持蓝牙
-        if (bluetoothAdapter == null) {
+        if (bluetoothAdapter == null && show)
             Toast.makeText(context, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
-            return false;
+        return bluetoothAdapter;
+    }
+
+    /**
+     * 视图打开时检查, 为了确保设备上蓝牙能使用, 如果当前蓝牙设备没启用,弹出对话框向用户要求授予权限来启用
+     */
+    public static void enableBleDrive(BluetoothAdapter bluetoothAdapter, Activity activity) {
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            activity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
-        return true;
     }
 
     /**
@@ -82,14 +91,8 @@ public class BleDrive implements MgBluetoothGatt {
         bleGattCallback = new BleGattCallback(this, serviceId, readId, writeId, bleAcListener);
     }
 
-    /**
-     * 视图打开时检查, 为了确保设备上蓝牙能使用, 如果当前蓝牙设备没启用,弹出对话框向用户要求授予权限来启用
-     */
     public void resume() {
-        if (!bluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            context.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
+        foundBleDevice.clear();
         scanBleDevice(true);
     }
 
@@ -111,8 +114,10 @@ public class BleDrive implements MgBluetoothGatt {
      *
      * @param enable
      */
-    private void scanBleDevice(final boolean enable) {
-        if (enable) {
+    public void scanBleDevice(final boolean enable) {
+        if (null == this.bluetoothAdapter)
+            this.bluetoothAdapter = BleDrive.initBleAdapter(context, false);
+        if (bluetoothAdapter.isEnabled() && enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(new Runnable() {
                 @Override

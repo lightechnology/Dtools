@@ -1,50 +1,34 @@
 package org.adol.tdm.dtools.data.vo;
 
-import org.xutils.db.annotation.Column;
-import org.xutils.db.annotation.Table;
+import android.bluetooth.BluetoothDevice;
 
 /**
- * Created by adolp on 2017/3/31.
+ * Created by adolp on 2017/4/5.
  */
 
-@Table(name = "ble_device")
 public class BleDevice {
 
-    @Column(name = "uid", isId = true, autoGen = true)
-    public int uid;
+    private Boolean connected;
+    private BluetoothDevice device;
 
-    @Column(name = "name")
-    public String name;
-
-    @Column(name = "mac")
-    public String mac;
-
-    public int getUid() {
-        return uid;
+    public BleDevice() {
+        this.connected = null;
+        this.device = null;
     }
 
-    public String getName() {
-        return name;
+    public Boolean isConnected() {
+        return connected;
     }
 
-    public String getMac() {
-        return mac;
+    public void setConnected(Boolean connected) {
+        this.connected = connected;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public BluetoothDevice getDevice() {
+        return device;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setMac(String mac) {
-        this.mac = mac;
-    }
-
-    @Override
-    public String toString() {
-        return "BleDevice(uid=" + uid + ", name=" + name + ", mac=" + mac + ")";
+    public void setDevice(BluetoothDevice device) {
+        this.device = device;
     }
 }

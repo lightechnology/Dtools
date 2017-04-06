@@ -1,1 +1,1 @@
-include ':app', ':qrcode', ':blecm'
+include ':app', ':qrcode', ':blecm', ':svgmap'

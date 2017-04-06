@@ -16,4 +16,6 @@ public class ComParams {
     public final static String DB_DIR = "sdcard/Dtools/data/db";
     public final static int DB_VERSION = 1;
 
+    public final static String CONNECTED_BLE_DEVICE = "dtools_connected_ble_device";
+
 }
