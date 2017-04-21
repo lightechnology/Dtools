@@ -11,9 +11,23 @@
         <item>技术学校B宿舍楼</item>
         <item>技术学校C宿舍楼</item>
     </array>
+    <array name="floor_array_a">
+        <item>1层</item>
+        <item>2层</item>
+        <item>3层</item>
+    </array>
+    <array name="floor_array_b">
+        <item>1层</item>
+        <item>2层</item>
+        <item>3层</item>
+        <item>4层</item>
+        <item>5层</item>
+    </array>
     <string name="title_activity_mg_device_sin">设备条码管理</string>
     <string name="title_activity_mg_ble_connect">蓝牙连接管理</string>
     <string name="title_activity_mg_device_location">设备位置管理</string>
+    <string name="title_activity_building">楼层选择</string>
+    <string name="title_activity_map">楼层地图</string>
     <string name="developing">开发中...</string>
     <string name="unkonw"></string>
     <string name="unknown_device">未知设备</string>

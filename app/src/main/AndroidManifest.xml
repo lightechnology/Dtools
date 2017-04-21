@@ -51,7 +51,12 @@
         <activity
             android:name=".activity.MgDeviceLocationActivity"
             android:label="@string/title_activity_mg_device_location" />
-        <activity android:name=".activity.MapActivity"></activity>
+        <activity
+            android:name=".activity.BuildingActivity"
+            android:label="@string/title_activity_building"></activity>
+        <activity
+            android:name=".activity.MapActivity"
+            android:label="@string/title_activity_map"/>
     </application>
 
 </manifest>

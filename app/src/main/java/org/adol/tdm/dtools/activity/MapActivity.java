@@ -2,7 +2,7 @@ package org.adol.tdm.dtools.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.util.svgmap.SVGMapController;
@@ -16,7 +16,7 @@ import com.util.svgmap.sample.helper.AssetsHelper;
 import org.adol.tdm.dtools.R;
 import org.adol.tdm.dtools.overlay.BitmapOverlay;
 
-public class MapActivity extends ActionBarActivity implements SVGMapController.MarkPointListener {
+public class MapActivity extends AppCompatActivity implements SVGMapController.MarkPointListener {
 
     private SVGMapView mapView;
 
@@ -24,7 +24,6 @@ public class MapActivity extends ActionBarActivity implements SVGMapController.M
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         mapView = (SVGMapView) findViewById(R.id.center_mapview);

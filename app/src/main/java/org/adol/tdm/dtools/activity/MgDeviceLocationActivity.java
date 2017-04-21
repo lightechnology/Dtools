@@ -31,6 +31,8 @@ public class MgDeviceLocationActivity extends AppActivity {
 
     @Event(value = R.id.building_lst, type = AdapterView.OnItemClickListener.class)
     private void itemSelected(AdapterView<ArrayAdapter<String>> parent, View view, int position, long id) {
-        startActivity(new Intent(MgDeviceLocationActivity.this, MapActivity.class));
+        Intent intent = new Intent(MgDeviceLocationActivity.this, BuildingActivity.class);
+        intent.putExtra("building", position % 2);
+        startActivity(intent);
     }
 }
